@@ -6,7 +6,7 @@ import pymysql
 
    author:  Evan Bailey
    date:    2016-04-24
-   version: 1.1
+   version: 1.2
 
    This file provides various functions to aide in fetching data from
    the "trainwizards" database. It is part of the 3rd phase of our
@@ -18,6 +18,11 @@ import pymysql
 
    - teardownConnection() should be called once the database is no
      longer needed in the program
+
+   Changelog:
+   - 1.0: functionality
+   - 1.1: documentation fixes
+   - 1.2: minor SQL query changes, added checkManager
 
 '''
 
