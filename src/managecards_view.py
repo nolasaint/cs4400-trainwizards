@@ -134,7 +134,7 @@ def _delCardWindow(): #{
     delWindow = tk.Toplevel()
     delWindow.title("Delete a card")
 
-    cardNumLabel = tk.Label(de;Window, text="Enter card number:")
+    cardNumLabel = tk.Label(delWindow, text="Enter card number:")
     cardNumLabel.pack()
 
     cardNumEntry = tk.Entry(delWindow, textvariable=_cardNum)
