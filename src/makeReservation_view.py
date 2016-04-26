@@ -213,7 +213,8 @@ def commitReservation():
     resID=dbhook.addReservation(getUsername(), cardUsed, totalCost)
     for ticket in reservation:
         dbhook.addTicket(resID, ticket['firstName'], ticket['lastName'], ticket['trainClass'], ticket['numBags'], ticket['departDate'], ticket['classPrice'], ticket['dptStn'], ticket['arrStn'], ticket['trainNum'])
-    
+    messagebox.showinfo('Success', " the reservation ID for your order is " + str(resID))
+    reservePage.destroy()
         
 def remove():
     global reservation
