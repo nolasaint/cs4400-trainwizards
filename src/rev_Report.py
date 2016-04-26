@@ -43,19 +43,19 @@ to change width of column drag boundary
 		container.grid_rowconfigure(0, weight=1)
 	#create tree for data
 	def _build_tree(self):
-		for col in car_header:
+		for col in rev_header:
 			self.tree.heading(col, text=col.title(),
 				command=lambda c=col: sortby(self.tree, c, 0))
 			# adjust the column's width to the header string
 			self.tree.column(col,
 				width=tkFont.Font().measure(col.title()))
-		for item in car_list:
+		for item in rev_list:
 			self.tree.insert('', 'end', values=item)
 			# adjust column's width if necessary to fit each value
 			for ix, val in enumerate(item):
 				col_w = tkFont.Font().measure(val)
-				if self.tree.column(car_header[ix],width=None)<col_w:
-					self.tree.column(car_header[ix], width=col_w)
+				if self.tree.column(rev_header[ix],width=None)<col_w:
+					self.tree.column(rev_header[ix], width=col_w)
 def sortby(tree, col, descending):
 	"""sort tree contents when a column header is clicked on"""
 	# grab values to sort
@@ -73,8 +73,8 @@ def sortby(tree, col, descending):
 # the test data ...
 setupConnection()
 
-car_header = ['Month', 'Revenue']
-car_list = getRevenueReport()
+rev_header = ['Month', 'Revenue']
+rev_list = getRevenueReport()
 root = tk.Tk()
 root.wm_title("Revenue Report")
 rev_report = Revreport()
