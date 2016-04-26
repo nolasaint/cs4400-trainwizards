@@ -10,7 +10,7 @@ import tkinter.ttk as ttk
 import pymysql
 from dbhook import *
 
-class Revreport(object):
+class Revreport():
 	#use a ttk.TreeView as a multicolumn ListBox
 	#initialize tree and widgets
 	def __init__(self):
@@ -29,7 +29,7 @@ to change width of column drag boundary
 		container = ttk.Frame()
 		container.pack(fill='both', expand=True)
 		# create a treeview with dual scrollbars
-		self.tree = ttk.Treeview(columns=car_header, show="headings")
+		self.tree = ttk.Treeview(columns=rev_header, show="headings")
 		vsb = ttk.Scrollbar(orient="vertical",
 			command=self.tree.yview)
 		hsb = ttk.Scrollbar(orient="horizontal",
@@ -72,9 +72,10 @@ def sortby(tree, col, descending):
 		int(not descending)))
 
 def toRevenueReportWindow():
+	global rev_header
+	global rev_list
 	rev_header = ['Month', 'Revenue']
 	rev_list = getRevenueReport()
-	root = tk.Toplevel()
-	root.wm_title("Revenue Report")
+	win = tk.Toplevel()
+	win.wm_title("Revenue Report")
 	rev_report = Revreport()
-	root.mainloop()
