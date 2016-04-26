@@ -1,6 +1,7 @@
 from tkinter import *
 import pymysql
-#import givereview_view 
+import givereview_view
+import managecards_view
 import dbhook
 
 userName=""
@@ -119,15 +120,20 @@ class GTtrain:
         self.Button6.configure(activebackground="#d9d9d9")
         self.Button6.configure(text='''Cancel A Reservation''')
 
-##        self.Button7 = Button(self.customerFuncs, command = givereview_view.toGiveReviewWindow)
-##        self.Button7.place(relx=0.32, rely=0.53, height=26, width=98)
-##        self.Button7.configure(activebackground="#d9d9d9")
-##        self.Button7.configure(text='''Give Review''')
+        self.Button7 = Button(self.customerFuncs, command = givereview_view.toGiveReviewWindow)
+        self.Button7.place(relx=0.32, rely=0.53, height=26, width=98)
+        self.Button7.configure(activebackground="#d9d9d9")
+        self.Button7.configure(text='''Give Review''')
 
         self.Button8 = Button(self.customerFuncs, command=self.addStudent)
         self.Button8.place(relx=0.32, rely=0.63, height=26, width=130)
         self.Button8.configure(activebackground="#d9d9d9")
         self.Button8.configure(text='''Add Student Info''')
+        
+        self.Button9 = Button(self.customerFuncs, command=managecards_view.toManageCardsWindow)
+        self.Button9.place(relx=0.32, rely=0.63, height=26, width=130)
+        self.Button9.configure(activebackground="#d9d9d9")
+        self.Button9.configure(text='''Manage Cards''')
 
         self.logoutbutton = Button(self.customerFuncs, command = self.logout)
         self.logoutbutton.place(relx=0.67, rely=0.81, height=26, width=68)
@@ -168,7 +174,6 @@ class GTtrain:
         self.loginScreen.destroy()
         self.window.withdraw()
 
-        #self.register=Frame(self.window)
         self.register=Toplevel()
 
         Label(self.register, text = "NEW USER REGISTRATION").grid(row=0, columnspan =2, sticky=EW)
