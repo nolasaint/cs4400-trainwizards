@@ -1,6 +1,5 @@
 from tkinter import *
 import pymysql
-import globalVars
 import givereview_view
 import dbhook
 
