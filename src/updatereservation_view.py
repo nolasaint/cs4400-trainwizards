@@ -3,9 +3,12 @@ from tkinter import *
 from tkinter import ttk
 import dbhook
 
-window=Tk()
+#toUpdateRes(window)
+#window.mainloop()
+#window=Tk()
 
-def toUpdateRes(win):
+# removed win argument
+def toUpdateRes():
     global inputScreen
     inputScreen=Toplevel()
     Label(inputScreen, text="UPDATE RESERVATION").pack()
@@ -154,12 +157,3 @@ def commitUpdate():
     global dDateStr
     #ticketID has to come from SQL, need statement
     dbhook.setTicketDate(resID.get(), ticketID, dDateStr)
-    
-    
-    
-        
-    
-    
-
-toUpdateRes(window)
-window.mainloop()

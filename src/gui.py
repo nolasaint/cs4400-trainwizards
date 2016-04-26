@@ -3,6 +3,7 @@ import pymysql
 import givereview_view
 import managecards_view
 import makeReservation_view
+import updatereservation_view
 import pop_Routes
 import rev_Report
 import dbhook
@@ -114,7 +115,7 @@ class GTtrain:
         self.Button2.configure(activebackground="#d9d9d9")
         self.Button2.configure(text='''Make a New Reservation''')
 
-        self.Button5 = Button(self.customerFuncs)
+        self.Button5 = Button(self.customerFuncs, command = updatereservation_view.toUpdateRes)
         self.Button5.place(relx=0.32, rely=0.33, height=26, width=155)
         self.Button5.configure(activebackground="#d9d9d9")
         self.Button5.configure(text='''Update a Reservation''')
