@@ -2,6 +2,7 @@ from tkinter import *
 import pymysql
 import givereview_view
 import managecards_view
+import makeReservation_view
 import dbhook
 
 userName=""
@@ -105,7 +106,7 @@ class GTtrain:
         self.Button1.configure(activebackground="#d9d9d9")
         self.Button1.configure(text='''View train Schedules''')
 
-        self.Button2 = Button(self.customerFuncs)
+        self.Button2 = Button(self.customerFuncs, command=makeReservation_view.searchTrain)
         self.Button2.place(relx=0.32, rely=0.23, height=26, width=172)
         self.Button2.configure(activebackground="#d9d9d9")
         self.Button2.configure(text='''Make a New Reservation''')
