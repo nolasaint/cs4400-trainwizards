@@ -1,5 +1,6 @@
 from tkinter import *
 import pymysql
+import globalVars
 import dbhook
 
 
@@ -193,7 +194,7 @@ class GTtrain:
                 self.register.withdraw()
                 self.toLoginWin()
             except:
-                messagebox.showerroe('Error', 'That Username is already taken')
+                messagebox.showerror('Error', 'That Username is already taken')
         else:
             messagebox.showerror('Error', 'Passwords do not match')
 
