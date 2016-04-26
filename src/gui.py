@@ -1,8 +1,10 @@
 from tkinter import *
 import pymysql
-import givereview_view 
+#import givereview_view 
 import dbhook
 
+userName=""
+    
 
 class GTtrain:
     def __init__(self, window):
@@ -74,17 +76,17 @@ class GTtrain:
         
     def checkLogin(self):
         self.user=self.Entryusr.get()
+        global userName
+        userName=self.Entryusr.get()
         pswd=self.Entrypwd.get()
         if dbhook.checkLogin(self.user, pswd):
             if dbhook.checkManager(self.user):
-                self.toManagerWin()
+                pass
             else:
                 self.toCustWin()
         else:
             messagebox.showerror('Error', 'Invalid Username and/or Password')
 
-    def toManagerWin(self):
-        print("manger")
 
     def toCustWin(self):
         self.loginScreen.destroy()
@@ -117,10 +119,10 @@ class GTtrain:
         self.Button6.configure(activebackground="#d9d9d9")
         self.Button6.configure(text='''Cancel A Reservation''')
 
-        self.Button7 = Button(self.customerFuncs, command = givereview_view.toGiveReviewWindow)
-        self.Button7.place(relx=0.32, rely=0.53, height=26, width=98)
-        self.Button7.configure(activebackground="#d9d9d9")
-        self.Button7.configure(text='''Give Review''')
+##        self.Button7 = Button(self.customerFuncs, command = givereview_view.toGiveReviewWindow)
+##        self.Button7.place(relx=0.32, rely=0.53, height=26, width=98)
+##        self.Button7.configure(activebackground="#d9d9d9")
+##        self.Button7.configure(text='''Give Review''')
 
         self.Button8 = Button(self.customerFuncs, command=self.addStudent)
         self.Button8.place(relx=0.32, rely=0.63, height=26, width=130)
@@ -204,10 +206,10 @@ class GTtrain:
         
         
 
-        
-
+def getUsername():
+    return userName
 
         
 win1 = Tk()
-GTtrain(win1)
+app = GTtrain(win1)
 win1.mainloop()
