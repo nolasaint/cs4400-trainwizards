@@ -70,12 +70,11 @@ def sortby(tree, col, descending):
 	# switch the heading so it will sort in the opposite direction
 	tree.heading(col, command=lambda col=col: sortby(tree, col, \
 		int(not descending)))
-# the test data ...
-setupConnection()
 
-rev_header = ['Month', 'Revenue']
-rev_list = getRevenueReport()
-root = tk.Tk()
-root.wm_title("Revenue Report")
-rev_report = Revreport()
-root.mainloop()
+def toRevenueReportWindow():
+	rev_header = ['Month', 'Revenue']
+	rev_list = getRevenueReport()
+	root = tk.Toplevel()
+	root.wm_title("Revenue Report")
+	rev_report = Revreport()
+	root.mainloop()

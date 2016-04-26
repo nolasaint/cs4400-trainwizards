@@ -70,14 +70,15 @@ def sortby(tree, col, descending):
 	# switch the heading so it will sort in the opposite direction
 	tree.heading(col, command=lambda col=col: sortby(tree, col, \
 		int(not descending)))
-# the data ...
-data_header = ['Months', 'Train #', 'Reservations']
-data_list = [(1,0,0) ,(2,'4441 7772 9991', '1 1 1') ,(3, 2221, 1) ,(4, '1112 1231 8881', '1 1 1') ,
-(5, '3331 6671', '1 1') ,(6, '1111 2341 4442', '3 3 3') ,(7, 0, 0) ,(8, 0, 0) ,(9, 0, 0) ,(10, 0, 0) ,
-(11, 0, 0) ,(12, 0, 0)]
-#[('Hyundai', 'brakes') ,('Honda', 'light') ,('Lexus', 'battery') ,('Benz', 'wiper') ,('Ford', 'tire') ,('Chevy', 'air') ,('Chrysler', 'piston') ,('Toyota', 'brake pedal') ,('BMW', 'seat')]
 
-root = tk.Tk()
-root.wm_title("View Popular Routes")
-mc_listbox = popRoutes()
-root.mainloop()
+def toPopularRoutesWindow():
+	data_header = ['Months', 'Train #', 'Reservations']
+	data_list = [(1,0,0) ,(2,'4441 7772 9991', '1 1 1') ,(3, 2221, 1) ,(4, '1112 1231 8881', '1 1 1') ,
+	(5, '3331 6671', '1 1') ,(6, '1111 2341 4442', '3 3 3') ,(7, 0, 0) ,(8, 0, 0) ,(9, 0, 0) ,(10, 0, 0) ,
+	(11, 0, 0) ,(12, 0, 0)]
+	#[('Hyundai', 'brakes') ,('Honda', 'light') ,('Lexus', 'battery') ,('Benz', 'wiper') ,('Ford', 'tire') ,('Chevy', 'air') ,('Chrysler', 'piston') ,('Toyota', 'brake pedal') ,('BMW', 'seat')]
+
+	root = tk.Toplevel()
+	root.wm_title("View Popular Routes")
+	mc_listbox = popRoutes()
+	root.mainloop()
