@@ -6,7 +6,7 @@ import pymysql
 
   author:  Evan Bailey
   date:    2016-04-24
-  version: 1.3
+  version: 1.4
 
   This file provides various functions to aide in fetching data from
   the "trainwizards" database. It is part of the 3rd phase of our
@@ -24,6 +24,7 @@ import pymysql
   - 1.1: documentation fixes
   - 1.2: minor SQL query changes, added checkManager
   - 1.3: added getSID
+  - 1.4: revised deleteCard, added checkStudent
 
 '''
 
@@ -133,10 +134,27 @@ def checkLogin(username, password): #{
 #
 # Determines if the specified user is a manager.
 #
-# Returns True if the login information is correct, False otherwise
+# Returns True if user is a manager, False otherwise
 # --------------------------------------
 def checkManager(username): #{
     sql = "SELECT mUsername FROM Manager WHERE mUsername = %s;"
+    replies = _cursor.execute(sql, (username))
+
+    # Clear cursor
+    _cursor.fetchall()
+    
+    return replies > 0
+#}
+
+
+# function: checkStudent(username)
+#
+# Determines if the specified user is a student.
+#
+# Returns True if the user is a student, False otherwise
+# --------------------------------------
+def checkManager(username): #{
+    sql = "SELECT cUsername FROM Customer WHERE cUsername = %s AND isStudent = 1;"
     replies = _cursor.execute(sql, (username))
 
     # Clear cursor
@@ -613,17 +631,17 @@ def setStudent(username): #{
 #}
 
 
-# function: deleteCard(cardNumber)
+# function: deleteCard(username, cardNumber)
 #
-# Deletes the specified credit card from the database.
+# Removes the specified card from the user in the database.
 #
 # Note: cardNumber must be a string
-# Note: will cause an exception if the specified cardNumber is not found in
-#       the DB
+# Note: will cause an exception if the specified cardNumber or username is
+#       not found in the DB
 # --------------------------------------
-def deleteCard(cardNumber): #{
-    sql = "DELETE cardNumber FROM Card WHERE cardNumber = %s;"
-    _cursor.execute(sql, (cardNumber))
+def deleteCard(username, cardNumber): #{
+    sql = "DELETE FROM Owns WHERE username = %s AND cardNum = %s;"
+    _cursor.execute(sql, (username, cardNumber))
     
     _connection.commit()
 #}

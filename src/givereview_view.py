@@ -13,7 +13,6 @@
 '''
 
 import tkinter as tk
-
 from tkinter import messagebox
 
 def _setupGlobals(): #{
@@ -28,8 +27,8 @@ def _setupGlobals(): #{
 
 def _giveReview(): #{
     import dbhook
-    import gui
-    
+    from gui import getUsername
+
     # Parse trainNum
     try:
         trainNum = int(trainNum.get())
@@ -48,7 +47,7 @@ def _giveReview(): #{
 
     # Execute SQL query
     try:
-        dbhook.addReview(trainNum, gui.getUsername(), rating, comment)
+        dbhook.addReview(trainNum, getUsername(), rating, comment)
     except:
         messagebox.showerror("Error", "Please enter a valid train number")
 #}
