@@ -12,8 +12,6 @@
 
 '''
 
-import dbhook
-import gui
 import tkinter as tk
 
 from tkinter import messagebox
@@ -29,6 +27,9 @@ def _setupGlobals(): #{
 #}
 
 def _giveReview(): #{
+    import dbhook
+    import gui
+    
     # Parse trainNum
     try:
         trainNum = int(trainNum.get())
