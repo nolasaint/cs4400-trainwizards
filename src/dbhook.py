@@ -403,6 +403,21 @@ def getRevenueReport(): #{
 #}
 
 
+# function: getSID(name)
+#
+# Retrieves the SID of the specified station
+#
+# Returns the [int] SID of the station with the specified name
+# --------------------------------------
+def getSID(name): #{
+    sql = "SELECT SID FROM Station WHERE name = %s;"
+    replies = _cursor.execute(sql, (name))
+
+    if replies > 0:
+      return replies[0]
+#}
+
+
 # function: addCustomer(username, password, email)
 #
 # Adds a new customer to the database.
