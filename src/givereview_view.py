@@ -64,6 +64,7 @@ def toGiveReviewWindow(): #{
 
     window = tk.Toplevel()
     window.title("Give Review")
+    # window.geometry("640x451+334+213")
 
     titleText = tk.Message(window, text="Give Review")
     titleText.pack()

@@ -95,7 +95,7 @@ def _delCard(): #{
     try:
         dbhook.deleteCard(getUsername(), cardNum)
     except:
-        messagebox.showerror("Error", "You do not own this card")
+        None
 
     delWindow.destroy()
 #}

@@ -655,8 +655,6 @@ def setStudent(username): #{
 # Removes the specified card from the user in the database.
 #
 # Note: cardNumber must be a string
-# Note: will cause an exception if the specified cardNumber or username is
-#       not found in the DB
 # --------------------------------------
 def deleteCard(username, cardNumber): #{
     sql = "DELETE FROM Owns WHERE username = %s AND cardNum = %s;"
