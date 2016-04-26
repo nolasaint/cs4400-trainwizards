@@ -7,7 +7,7 @@
     date:    2016-04-25
     version: 1.0
 
-    Provides functions to display the "Give Review" window view and perform
+    Provides functions to display the "Give Review" window and perform
     relevant SQL queries through dbhook.
 
 '''

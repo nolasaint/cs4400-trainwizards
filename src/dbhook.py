@@ -6,7 +6,7 @@ import pymysql
 
   author:  Evan Bailey
   date:    2016-04-24
-  version: 1.2
+  version: 1.3
 
   This file provides various functions to aide in fetching data from
   the "trainwizards" database. It is part of the 3rd phase of our
@@ -23,6 +23,7 @@ import pymysql
   - 1.0: functionality
   - 1.1: documentation fixes
   - 1.2: minor SQL query changes, added checkManager
+  - 1.3: added getSID
 
 '''
 
@@ -414,7 +415,7 @@ def getSID(name): #{
     replies = _cursor.execute(sql, (name))
 
     if replies > 0:
-      return replies[0]
+      return _cursor.fetchone()[0]
 #}
 
 
