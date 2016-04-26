@@ -2,27 +2,27 @@ import pymysql
 
 '''
 
-   dbhook.py
+  dbhook.py
 
-   author:  Evan Bailey
-   date:    2016-04-24
-   version: 1.2
+  author:  Evan Bailey
+  date:    2016-04-24
+  version: 1.2
 
-   This file provides various functions to aide in fetching data from
-   the "trainwizards" database. It is part of the 3rd phase of our
-   team's (Team 68) project for Spring 2016 CS 4400 at Georgia Tech.
+  This file provides various functions to aide in fetching data from
+  the "trainwizards" database. It is part of the 3rd phase of our
+  team's (Team 68) project for Spring 2016 CS 4400 at Georgia Tech.
 
-   Notes:
-   - setupConnection() must be called before any other functions can be
-     used
+  Notes:
+  - setupConnection() must be called before any other functions can be
+    used
 
-   - teardownConnection() should be called once the database is no
-     longer needed in the program
+  - teardownConnection() should be called once the database is no
+    longer needed in the program
 
-   Changelog:
-   - 1.0: functionality
-   - 1.1: documentation fixes
-   - 1.2: minor SQL query changes, added checkManager
+  Changelog:
+  - 1.0: functionality
+  - 1.1: documentation fixes
+  - 1.2: minor SQL query changes, added checkManager
 
 '''
 
