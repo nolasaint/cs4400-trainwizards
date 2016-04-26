@@ -163,6 +163,9 @@ def makeReservation():
     Label(selection, text="# of Baggages", bd=2, relief=SOLID).grid(row=0, column=6, sticky=EW)
     Label(selection, text="Passenger Name", bd=2, relief=SOLID).grid(row=0, column=7, sticky=EW)        
     Label(selection, text="Remove", bd=2, relief=SOLID).grid(row=0, column=8)
+    costString='Cost: '
+    global totalCost
+    totalCost=0
     global i
     for i in range(len(reservation)):
         Label(selection, text = reservation[i]['trainNum'], bd=2, relief=SOLID).grid(row=i+1, column=0, sticky=EW)
@@ -174,15 +177,22 @@ def makeReservation():
         Label(selection, text=reservation[i]['numBags'], bd=2, relief=SOLID).grid(row=i+1, column=6, sticky=EW)
         Label(selection, text=reservation[i]['firstName']+' '+reservation[i]['lastName'], bd=2, relief=SOLID).grid(row=i+1, column=7, sticky=EW)        
         Button(selection, text="Remove", command = remove).grid(row=i+1, column=8)
+        if int(reservation[i]['numBags'])>2:
+            totalCost+=int(reservation[i]['classPrice'])+ (int(reservation[i]['numBags'])-2)*30
+            costString=costString + reservation[i]['classPrice'] + ' + ' + str(int(reservation[i]['numBags'])-2)+ '*30'
+        else:
+            totalCost+=int(reservation[i]['classPrice'])
+            costString=costString + reservation[i]['classPrice'] 
     dbhook.setupConnection()
     eduCheck=dbhook.checkStudent(getUsername())
     if eduCheck:
         Label(reservePage, text="Student Discount Applied").pack()
+        totalCost=totalCost*.8
+        costString=costString+ '*.8'
     payment=Frame(reservePage)
     payment.pack()
     Label(payment, text="Total Cost").grid(row=0, column=0)
-    global totalCost
-    totalCost=1
+    
     Label(payment, text="$"+str(totalCost), relief=SUNKEN).grid(row=0, column=1, columnspan=2, sticky=EW)
     Label(payment, text="Use Card").grid(row=1, column=0)
     cardList=dbhook.getCards(getUsername())
@@ -198,6 +208,9 @@ def makeReservation():
 
     Button(reservePage, text="Back", command=returnToInfo).pack(side=LEFT)
     Button(reservePage, text="Submit", command=commitReservation).pack(side=RIGHT)
+
+    Label(reservePage, text=costString).pack()
+    
     
 def addAnother():
     reservePage.destroy()
