@@ -154,7 +154,7 @@ def checkManager(username): #{
 #
 # Returns True if the user is a student, False otherwise
 # --------------------------------------
-def checkManager(username): #{
+def checkStudent(username): #{
     sql = "SELECT cUsername FROM Customer WHERE cUsername = %s AND isStudent = 1;"
     replies = _cursor.execute(sql, (username))
 
