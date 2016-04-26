@@ -6,6 +6,7 @@ import makeReservation_view
 import pop_Routes
 import rev_Report
 import dbhook
+import view_TrainSch
 
 userName=""
     
@@ -103,7 +104,7 @@ class GTtrain:
         self.customerFuncs.configure(relief=GROOVE)
         self.customerFuncs.configure(width=565)
 
-        self.Button1 = Button(self.customerFuncs)
+        self.Button1 = Button(self.customerFuncs, command=view_TrainSch.trainview)
         self.Button1.place(relx=0.32, rely=0.13, height=26, width=152)
         self.Button1.configure(activebackground="#d9d9d9")
         self.Button1.configure(text='''View train Schedules''')
