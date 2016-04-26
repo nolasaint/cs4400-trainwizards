@@ -160,9 +160,3 @@ def toManageCardsWindow(): #{
     delCardWindowButton = tk.Button(window, text="Delete a card", command=_delCardWindow)
     delCardWindowButton.pack()
 #}
-
-# Testing area
-mainWindow = tk.Tk()
-toManageCardsWindow()
-
-mainWindow.mainloop()
