@@ -76,7 +76,7 @@ class GTtrain:
         self.user=self.Entryusr.get()
         pswd=self.Entrypwd.get()
         if dbhook.checkLogin(self.user, pswd):
-            if dbhook.checkMan(self.user):
+            if dbhook.checkManager(self.user):
                 self.toManagerWin()
             else:
                 self.toCustWin()
