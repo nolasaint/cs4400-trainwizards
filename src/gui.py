@@ -213,6 +213,9 @@ class GTtrain:
 
 def getUsername():
     return userName
+def setUsername(_userName):
+    global userName
+    userName= _userName
 
         
 win1 = Tk()
