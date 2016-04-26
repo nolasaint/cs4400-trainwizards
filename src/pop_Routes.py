@@ -1,7 +1,9 @@
 '''
-Revenue Report
+Popular Route Report
 Here the TreeView widget is configured as a multi-column listbox
-Retrieves revenue report and displays the month and revenue
+Retrieves popular route report and converts it into a format recognized
+by the treebuilding fucntion
+then displays month, list of train#, list of reservations
 
 '''
 import tkinter as tk
@@ -10,14 +12,13 @@ import tkinter.ttk as ttk
 import pymysql
 from dbhook import *
 
-class Revreport(object):
-	#use a ttk.TreeView as a multicolumn ListBox
-	#initialize tree and widgets
+
+class popRoutes(object):
+	"""use a ttk.TreeView as a multicolumn ListBox"""
 	def __init__(self):
 		self.tree = None
 		self._setup_widgets()
 		self._build_tree()
-	#configure window, frame and widget
 	def _setup_widgets(self):
 		s = """\
 click on header to sort by that column
@@ -29,7 +30,7 @@ to change width of column drag boundary
 		container = ttk.Frame()
 		container.pack(fill='both', expand=True)
 		# create a treeview with dual scrollbars
-		self.tree = ttk.Treeview(columns=car_header, show="headings")
+		self.tree = ttk.Treeview(columns=data_header, show="headings")
 		vsb = ttk.Scrollbar(orient="vertical",
 			command=self.tree.yview)
 		hsb = ttk.Scrollbar(orient="horizontal",
@@ -41,21 +42,20 @@ to change width of column drag boundary
 		hsb.grid(column=0, row=1, sticky='ew', in_=container)
 		container.grid_columnconfigure(0, weight=1)
 		container.grid_rowconfigure(0, weight=1)
-	#create tree for data
 	def _build_tree(self):
-		for col in rev_header:
+		for col in data_header:
 			self.tree.heading(col, text=col.title(),
 				command=lambda c=col: sortby(self.tree, c, 0))
 			# adjust the column's width to the header string
 			self.tree.column(col,
 				width=tkFont.Font().measure(col.title()))
-		for item in rev_list:
+		for item in data_list:
 			self.tree.insert('', 'end', values=item)
 			# adjust column's width if necessary to fit each value
 			for ix, val in enumerate(item):
 				col_w = tkFont.Font().measure(val)
-				if self.tree.column(rev_header[ix],width=None)<col_w:
-					self.tree.column(rev_header[ix], width=col_w)
+				if self.tree.column(data_header[ix],width=None)<col_w:
+					self.tree.column(data_header[ix], width=col_w)
 def sortby(tree, col, descending):
 	"""sort tree contents when a column header is clicked on"""
 	# grab values to sort
@@ -70,12 +70,14 @@ def sortby(tree, col, descending):
 	# switch the heading so it will sort in the opposite direction
 	tree.heading(col, command=lambda col=col: sortby(tree, col, \
 		int(not descending)))
-# the test data ...
-setupConnection()
+# the data ...
+data_header = ['Months', 'Train #', 'Reservations']
+data_list = [(1,0,0) ,(2,'4441 7772 9991', '1 1 1') ,(3, 2221, 1) ,(4, '1112 1231 8881', '1 1 1') ,
+(5, '3331 6671', '1 1') ,(6, '1111 2341 4442', '3 3 3') ,(7, 0, 0) ,(8, 0, 0) ,(9, 0, 0) ,(10, 0, 0) ,
+(11, 0, 0) ,(12, 0, 0)]
+#[('Hyundai', 'brakes') ,('Honda', 'light') ,('Lexus', 'battery') ,('Benz', 'wiper') ,('Ford', 'tire') ,('Chevy', 'air') ,('Chrysler', 'piston') ,('Toyota', 'brake pedal') ,('BMW', 'seat')]
 
-rev_header = ['Month', 'Revenue']
-rev_list = getRevenueReport()
 root = tk.Tk()
-root.wm_title("Revenue Report")
-rev_report = Revreport()
+root.wm_title("View Popular Routes")
+mc_listbox = popRoutes()
 root.mainloop()
