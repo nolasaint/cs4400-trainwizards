@@ -6,7 +6,7 @@ import pymysql
 
   author:  Evan Bailey
   date:    2016-04-24
-  version: 1.4
+  version: 1.5
 
   This file provides various functions to aide in fetching data from
   the "trainwizards" database. It is part of the 3rd phase of our
@@ -25,6 +25,7 @@ import pymysql
   - 1.2: minor SQL query changes, added checkManager
   - 1.3: added getSID
   - 1.4: revised deleteCard, added checkStudent
+  - 1.5: added getCards
 
 '''
 
@@ -182,6 +183,24 @@ def checkIfCardowner(username, cardNumber): #{
     return replies > 0
 #}
 
+
+# function: getCards(username)
+#
+# Returns a list of cards owned by the specified user.
+#
+# Returns a list of cards owned by the user
+# --------------------------------------
+def getCards(username): #{
+    sql = "SELECT cardNum FROM Owns WHERE username = %s;"
+    replies = _cursor.execute(sql, (username))
+    retval = []
+
+    for i in range(replies): #{
+        retval.append(_cursor.fetchone()[0])
+    #}
+
+    return retval
+#}
 
 # function: getSchedule(trainNum)
 #
