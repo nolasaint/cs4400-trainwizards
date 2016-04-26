@@ -1,6 +1,7 @@
 from tkinter import *
 import pymysql
 import globalVars
+import givereview_view
 import dbhook
 
 
@@ -117,7 +118,7 @@ class GTtrain:
         self.Button6.configure(activebackground="#d9d9d9")
         self.Button6.configure(text='''Cancel A Reservation''')
 
-        self.Button7 = Button(self.customerFuncs)
+        self.Button7 = Button(self.customerFuncs, command = givereview_view.toGiveReviewWindow)
         self.Button7.place(relx=0.32, rely=0.53, height=26, width=98)
         self.Button7.configure(activebackground="#d9d9d9")
         self.Button7.configure(text='''Give Review''')
