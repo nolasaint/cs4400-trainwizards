@@ -1,7 +1,7 @@
 '''
 Revenue Report
 Here the TreeView widget is configured as a multi-column listbox
-Retrieves revenue report and displays the month and revenue in widget
+Retrieves revenue report and displays the month and revenue
 
 '''
 import tkinter as tk
@@ -11,11 +11,13 @@ import pymysql
 from dbhook import *
 
 class Revreport(object):
-	"""use a ttk.TreeView as a multicolumn ListBox"""
+	#use a ttk.TreeView as a multicolumn ListBox
+	#initialize tree and widgets
 	def __init__(self):
 		self.tree = None
 		self._setup_widgets()
 		self._build_tree()
+	#configure window, frame and widget
 	def _setup_widgets(self):
 		s = """\
 click on header to sort by that column
@@ -39,6 +41,7 @@ to change width of column drag boundary
 		hsb.grid(column=0, row=1, sticky='ew', in_=container)
 		container.grid_columnconfigure(0, weight=1)
 		container.grid_rowconfigure(0, weight=1)
+	#create tree for data
 	def _build_tree(self):
 		for col in car_header:
 			self.tree.heading(col, text=col.title(),
@@ -67,7 +70,7 @@ def sortby(tree, col, descending):
 	# switch the heading so it will sort in the opposite direction
 	tree.heading(col, command=lambda col=col: sortby(tree, col, \
 		int(not descending)))
-# the data ...
+# the test data ...
 setupConnection()
 
 car_header = ['Month', 'Revenue']
