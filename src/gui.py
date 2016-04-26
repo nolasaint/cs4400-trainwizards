@@ -131,12 +131,12 @@ class GTtrain:
         self.Button8.configure(text='''Add Student Info''')
         
         self.Button9 = Button(self.customerFuncs, command=managecards_view.toManageCardsWindow)
-        self.Button9.place(relx=0.32, rely=0.63, height=26, width=130)
+        self.Button9.place(relx=0.32, rely=0.73, height=26, width=130)
         self.Button9.configure(activebackground="#d9d9d9")
         self.Button9.configure(text='''Manage Cards''')
 
         self.logoutbutton = Button(self.customerFuncs, command = self.logout)
-        self.logoutbutton.place(relx=0.67, rely=0.81, height=26, width=68)
+        self.logoutbutton.place(relx=0.67, rely=0.90, height=26, width=68)
         self.logoutbutton.configure(activebackground="#d9d9d9")
         self.logoutbutton.configure(text='''Logout''')
         
