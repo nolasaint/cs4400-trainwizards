@@ -29,6 +29,8 @@ def _giveReview(): #{
     import dbhook
     from gui import getUsername
 
+    global window
+
     # Parse trainNum
     try:
         trainNum = int(trainNum.get())
@@ -50,11 +52,15 @@ def _giveReview(): #{
         dbhook.addReview(trainNum, getUsername(), rating, comment)
     except:
         messagebox.showerror("Error", "Please enter a valid train number")
+    
+    window.destroy()
 #}
 
 def toGiveReviewWindow(): #{
     # Initialize globals for Entry objects to write to
     _setupGlobals()
+
+    global window
 
     window = tk.Toplevel()
     window.title("Give Review")

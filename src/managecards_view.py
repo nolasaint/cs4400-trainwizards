@@ -34,6 +34,8 @@ def _addCard(): #{
     import dbhook
     from gui import getUsername
 
+    global addWindow
+
     # Parse cardNum
     cardNum = _cardNum.get()
     if (len(cardNum) != 16):
@@ -61,17 +63,22 @@ def _addCard(): #{
     except:
         # If the card already exists in the database, an exception occurs
         None
-
+    
     try:
-        dbhook.setOwnership(gui.getUsername, cardNum)
+        dbhook.setOwnership(getUsername(), cardNum)
     except:
+        print("Username is ", getUsername())
         # Shouldn't be reached, since the first try block should ensure card exists
         print("For some reason, an exception was encountered")
+
+    addWindow.destroy()
 #}
 
 def _delCard(): #{
     import dbhook
     from gui import getUsername
+
+    global delWindow
 
     # Parse cardNum
     cardNum = _cardNum.get()
@@ -86,12 +93,16 @@ def _delCard(): #{
 
     # Execute SQL query
     try:
-        dbhook.deleteCard(gui.getUsername, cardNum)
+        dbhook.deleteCard(getUsername(), cardNum)
     except:
         messagebox.showerror("Error", "You do not own this card")
+
+    delWindow.destroy()
 #}
 
 def _addCardWindow(): #{
+    global addWindow
+
     addWindow = tk.Toplevel()
     addWindow.title("Add new card")
 
@@ -131,6 +142,8 @@ def _addCardWindow(): #{
 #}
 
 def _delCardWindow(): #{
+    global delWindow
+
     delWindow = tk.Toplevel()
     delWindow.title("Delete a card")
 
