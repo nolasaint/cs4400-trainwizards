@@ -218,6 +218,4 @@ def setUsername(_userName):
     userName= _userName
 
         
-win1 = Tk()
-app = GTtrain(win1)
-win1.mainloop()
+
