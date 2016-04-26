@@ -2,19 +2,11 @@ from tkinter import *
 import pymysql
 import dbhook
 
-'''
-
-  gui.py
-
-  authors: Emma O'Bryant, Evan Bailey
-  date:    2016-04-24
-  version: 1.0
-
-'''
 
 class GTtrain:
     def __init__(self, window):
         self.window = window
+        dbhook.setupConnection()
         self.toLoginWin()
         
     
@@ -80,15 +72,16 @@ class GTtrain:
         dbhook.setupConnection()
         
     def checkLogin(self):
-        user=self.Entryusr.get()
+        self.user=self.Entryusr.get()
         pswd=self.Entrypwd.get()
-        if dbhook.checkLogin(user, pswd):
-            if dbhook.checkMan(user):
+        if dbhook.checkLogin(self.user, pswd):
+            if dbhook.checkMan(self.user):
                 self.toManagerWin()
             else:
                 self.toCustWin()
         else:
             messagebox.showerror('Error', 'Invalid Username and/or Password')
+
     def toManagerWin(self):
         print("manger")
 
@@ -149,16 +142,30 @@ class GTtrain:
         self.schoolE=Entry(self.add)
         self.schoolE.grid(row=1, column=1)
 
-        Button(self.add, text = "Back").grid(row=3, column=0)
-        Button(self.add, text = "Submit").grid(row=3, column=1)
+        Button(self.add, text = "Back", command=self.transitionOut).grid(row=3, column=0)
+        Button(self.add, text = "Submit", comman=self.insertStudent).grid(row=3, column=1)
+
+    def transitionOut(self):
+        self.add.destroy()
+        self.gotoMain()
+
+    def insertStudent(self):
+        if self.schoolE.get()[-3:]=="edu":
+            dbhook.setStudent(self.user)
+            self.add.destroy()
+            self.gotoMain()
+        else:
+            messagebox.showerror('Error', 'School email must end in .edu')
     
-
+    def gotoMain(self):
+        self.window.deiconify()
         
-
     def toRegisterWin(self):
         self.loginScreen.destroy()
+        self.window.withdraw()
 
-        self.register=Frame(self.window)
+        #self.register=Frame(self.window)
+        self.register=Toplevel()
 
         Label(self.register, text = "NEW USER REGISTRATION").grid(row=0, columnspan =2, sticky=EW)
         Label(self.register, text = "Username").grid(row=1, column=0)
@@ -182,6 +189,8 @@ class GTtrain:
         if self.pswd.get()==self.cpswd.get():
             try:
                 dbhook.addCustomer(self.user.get(), self.pswd.get(), self.email.get())
+                self.window.deiconify()
+                self.register.withdraw()
                 self.toLoginWin()
             except:
                 messagebox.showerroe('Error', 'That Username is already taken')
