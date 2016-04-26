@@ -72,6 +72,8 @@ def sortby(tree, col, descending):
 		int(not descending)))
 
 def toPopularRoutesWindow():
+	global data_header
+	global data_list
 	data_header = ['Months', 'Train #', 'Reservations']
 	data_list = [(1,0,0) ,(2,'4441 7772 9991', '1 1 1') ,(3, 2221, 1) ,(4, '1112 1231 8881', '1 1 1') ,
 	(5, '3331 6671', '1 1') ,(6, '1111 2341 4442', '3 3 3') ,(7, 0, 0) ,(8, 0, 0) ,(9, 0, 0) ,(10, 0, 0) ,
@@ -81,4 +83,3 @@ def toPopularRoutesWindow():
 	root = tk.Toplevel()
 	root.wm_title("View Popular Routes")
 	mc_listbox = popRoutes()
-	root.mainloop()
