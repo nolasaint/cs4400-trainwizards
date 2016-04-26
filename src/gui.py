@@ -3,6 +3,8 @@ import pymysql
 import givereview_view
 import managecards_view
 import makeReservation_view
+import pop_Routes
+import rev_Report
 import dbhook
 
 userName=""
@@ -83,7 +85,7 @@ class GTtrain:
         pswd=self.Entrypwd.get()
         if dbhook.checkLogin(self.user, pswd):
             if dbhook.checkManager(self.user):
-                pass
+                self.toManWin()
             else:
                 self.toCustWin()
         else:
@@ -141,7 +143,30 @@ class GTtrain:
         self.logoutbutton.configure(activebackground="#d9d9d9")
         self.logoutbutton.configure(text='''Logout''')
         
-        
+    def toManWin(self):
+        self.loginScreen.destroy()
+
+        self.managerFuncs = Frame(self.window)
+        self.managerFuncs.place(relx=0.05, rely=0.02, relheight=0.88, relwidth=0.88)
+        self.managerFuncs.configure(relief=GROOVE)
+        self.managerFuncs.configure(borderwidth="2")
+        self.managerFuncs.configure(relief=GROOVE)
+        self.managerFuncs.configure(width=565)
+
+        self.Button1 = Button(self.managerFuncs, command=rev_Report.toRevenueReportWindow)
+        self.Button1.place(relx=0.32, rely=0.13, height=26, width=152)
+        self.Button1.configure(activebackground="#d9d9d9")
+        self.Button1.configure(text='''View Revenue Report''')
+
+        self.Button2 = Button(self.managerFuncs, command=pop_Routes.toPopularRoutesWindow)
+        self.Button2.place(relx=0.32, rely=0.23, height=26, width=152)
+        self.Button2.configure(activebackground="#d9d9d9")
+        self.Button2.configure(text='''View Popular Routes''')
+
+        self.logoutbutton = Button(self.managerFuncs, command = self.logout)
+        self.logoutbutton.place(relx=0.67, rely=0.90, height=26, width=68)
+        self.logoutbutton.configure(activebackground="#d9d9d9")
+        self.logoutbutton.configure(text='''Logout''')
 
     def addStudent(self):
         self.window.withdraw()
